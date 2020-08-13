@@ -57,8 +57,10 @@ public class Engine
 	/** Stop the engine */
 	public static void stop()
 	{
-		// This check is unnecessary
-//		if (!running) return;
+/*		if (!running) return;
+		
+		This check is unnecessary */
+		
 		running = false;
 	}
 	

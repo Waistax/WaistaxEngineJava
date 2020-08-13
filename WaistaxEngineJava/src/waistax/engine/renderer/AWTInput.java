@@ -8,7 +8,7 @@ import java.awt.event.*;
  * Handles all of the inputs to a Canvas from Java AWT library
  *
  * Author: Waistax
- * Created: <version> / 13 Aðu 2020 / 16:51:15
+ * Created: 0.1 / 13 Aðu 2020 / 16:51:15
  *
  */
 public class AWTInput extends Input implements KeyListener, MouseListener, MouseWheelListener, MouseMotionListener
