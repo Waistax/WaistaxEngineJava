@@ -14,7 +14,7 @@ import waistax.engine.renderer.*;
 public class Engine
 {
 	/** The version of the engine */
-	public static final String version = "0.1";
+	public static final String version = "0.2";
 	
 	/** The active renderer
 	 * This should not change after the engine starts. */

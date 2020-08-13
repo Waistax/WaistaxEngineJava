@@ -1,37 +1,37 @@
 package waistax.math;
 
 /**
- * Two dimensional vector of integers
+ * Two dimensional vector of floating point numbers
  *
  * Author: Waistax
- * Created: 0.1 / 13 Aðu 2020 / 15:40:59
+ * Created: 0.2 / 13 Aðu 2020 / 20:39:09
  *
  */
-public class Vec2i
+public class Vec2f
 {
 	/** First component */
-	public int x;
+	public float x;
 	
 	/** Second component */
-	public int y;
+	public float y;
 
 	/** Initialize from a pair of numbers */
-	public Vec2i(int x, int y)
+	public Vec2f(float x, float y)
 	{
 		set(x, y);
 	}
 	
 	/** Copy */
-	public Vec2i(Vec2i v)
+	public Vec2f(Vec2f v)
 	{
 		set(v);
 	}
 	
 	/** Default */
-	public Vec2i() {}
+	public Vec2f() {}
 	
 	/** Set the components */
-	public Vec2i set(int x, int y)
+	public Vec2f set(float x, float y)
 	{
 		this.x = x;
 		this.y = y;
@@ -39,15 +39,15 @@ public class Vec2i
 	}
 	
 	/** Set the components */
-	public Vec2i set(Vec2i v)
+	public Vec2f set(Vec2f v)
 	{
 		return set(v.x, v.y);
 	}
 	
 	/** Set the components */
-	public Vec2i set(Vec2f v)
+	public Vec2f set(Vec2i v)
 	{
-		return set((int) v.x, (int) v.y);
+		return set((float) v.x, (float) v.y);
 	}
 	
 	@Override
@@ -63,14 +63,18 @@ public class Vec2i
 				.toString();
 	}
 	
-	/** Check all of the components one by one */
-	public boolean equals(int x, int y)
+	/** Check the components one by one
+	 * Returns true if both of the components are equal to the given numbers.
+	 * Returns false if any one of them is not equal. */
+	public boolean equals(float x, float y)
 	{
 		return this.x == x && this.y == y;
 	}
 	
-	/** Check all of the components one by one */
-	public boolean equals(Vec2i v)
+	/** Check the components one by one
+	 * Returns true if both of the components are equal to the given numbers.
+	 * Returns false if any one of them is not equal. */
+	public boolean equals(Vec2f v)
 	{
 		return equals(v.x, v.y);
 	}
@@ -80,47 +84,47 @@ public class Vec2i
 	{
 		// Make sure it does not call itself!
 		// This should call the method above.
-		return equals((Vec2i) obj);
+		return equals((Vec2f) obj);
 	}
 	
 	/** Set the addition of two vectors */
-	public Vec2i add(Vec2i left, Vec2i right)
+	public Vec2f add(Vec2f left, Vec2f right)
 	{
 		return set(left.x + right.x, left.y + right.y);
 	}
 	
 	/** Set the subtraction of two vectors */
-	public Vec2i sub(Vec2i left, Vec2i right)
+	public Vec2f sub(Vec2f left, Vec2f right)
 	{
 		return set(left.x - right.x, left.y - right.y);
 	}
 	
 	/** Set the multiplication of a vector and a scalar */
-	public Vec2i mul(Vec2i left, int right)
+	public Vec2f mul(Vec2f left, float right)
 	{
 		return set(left.x * right, left.y * right);
 	}
 
 	/** Set the division of a vector and a scalar */
-	public Vec2i div(Vec2i left, int right)
+	public Vec2f div(Vec2f left, float right)
 	{
 		return set(left.x / right, left.y / right);
 	}
 	
 	/** Set the division of a scalar to a vector */
-	public Vec2i div(int left, Vec2i right)
+	public Vec2f div(float left, Vec2f right)
 	{
 		return set(left / right.x, left / right.y);
 	}
 	
 	/** Set the minimum components from two vectors */
-	public Vec2i min(Vec2i left, Vec2i right)
+	public Vec2f min(Vec2f left, Vec2f right)
 	{
 		return set(left.x < right.x ? left.x : right.x, left.y < right.y ? left.y : right.y);
 	}
 	
 	/** Set the maximum components from two vectors */
-	public Vec2i max(Vec2i left, Vec2i right)
+	public Vec2f max(Vec2f left, Vec2f right)
 	{
 		return set(left.x > right.x ? left.x : right.x, left.y > right.y ? left.y : right.y);
 	}
