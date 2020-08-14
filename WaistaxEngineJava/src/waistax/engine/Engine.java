@@ -14,7 +14,16 @@ import waistax.engine.renderer.*;
 public class Engine
 {
 	/** The version of the engine */
-	public static final String version = "0.2";
+	public static final String version = "0.3";
+	
+	/** Profiles frame method of the game */
+	public static final Profiler GAME_PROFILER = new Profiler();
+	
+	/** Profiles frame method of the input */
+	public static final Profiler INPUT_PROFILER = new Profiler();
+
+	/** Profiles render method of the renderer */
+	public static final Profiler RENDER_PROFILER = new Profiler();
 	
 	/** The active renderer
 	 * This should not change after the engine starts. */
@@ -109,8 +118,18 @@ public class Engine
 				
 				if (secondsTimer >= 1.0F)
 				{
+					// Calculate the frame rate and profiler average times
 					frameRate = frames / secondsTimer;
+					GAME_PROFILER.calculate();
+					INPUT_PROFILER.calculate();
+					RENDER_PROFILER.calculate();
+					
+					// TODO: Get rid of this
+					// Print the frame rate and average times
 					System.out.println("Frame Rate: " + frameRate);
+					System.out.println("Game: " + GAME_PROFILER.getAverage() + "ms");
+					System.out.println("Input: " + INPUT_PROFILER.getAverage() + "ms");
+					System.out.println("Render: " + RENDER_PROFILER.getAverage() + "ms");
 					
 					// Reset
 					frames = 0;
@@ -142,9 +161,17 @@ public class Engine
 	/** Called every frame */
 	private static void frame()
 	{
+		INPUT_PROFILER.start();
 		renderer.getInput().frame();
+		INPUT_PROFILER.stop();
+		
+		GAME_PROFILER.start();
 		game.frame();
+		GAME_PROFILER.stop();
+		
+		RENDER_PROFILER.start();
 		renderer.render();
+		RENDER_PROFILER.stop();
 	}
 
 	/** Private constructor 
