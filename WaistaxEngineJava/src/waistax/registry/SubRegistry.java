@@ -30,7 +30,7 @@ public class SubRegistry<T>
 	public SubRegistry(Class<T> entryType)
 	{
 		identifiers = new Identifier[10];
-		values = (T[]) new Object[10];
+		values = (T[]) Array.newInstance(entryType, 10);
 		this.entryType = entryType;
 	}
 	
