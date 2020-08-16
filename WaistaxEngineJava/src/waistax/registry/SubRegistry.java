@@ -1,5 +1,7 @@
 package waistax.registry;
 
+import java.lang.reflect.*;
+
 /**
  * Stores a list of entries that have the same type of objects
  * 
@@ -21,11 +23,15 @@ public class SubRegistry<T>
 	/** Number of entries */
 	public int size;
 	
-	/** Default */
-	public SubRegistry()
+	/** Class of the objects in this sub registry */
+	public final Class<T> entryType;
+	
+	/** Initialize with the entry type */
+	public SubRegistry(Class<T> entryType)
 	{
 		identifiers = new Identifier[10];
 		values = (T[]) new Object[10];
+		this.entryType = entryType;
 	}
 	
 	/** Add an entry */
@@ -35,13 +41,13 @@ public class SubRegistry<T>
 		{
 			// Expand identifiers
 			// Create a bigger array, copy the old one and return it
-			Identifier[] newIdentifiers = new Identifier[values.length * 3 / 2];
+			Identifier[] newIdentifiers = new Identifier[identifiers.length * 3 / 2];
 			System.arraycopy(identifiers, 0, newIdentifiers, 0, identifiers.length);
 			identifiers = newIdentifiers;
 			
 			// Expand values
 			// Create a bigger array, copy the old one and return it
-			T[] newValues = (T[]) new Object[values.length * 3 / 2];
+			T[] newValues = (T[]) Array.newInstance(entryType, identifiers.length * 3 / 2);
 			System.arraycopy(values, 0, newValues, 0, values.length);
 			values = newValues;
 		}

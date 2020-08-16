@@ -74,7 +74,7 @@ public class Registry
 		if (subRegistry == null)
 		{
 			// Create a new sub registry and put it into the map
-			subRegistry = new SubRegistry<T>();
+			subRegistry = new SubRegistry<T>(entryType);
 			subRegistries.put(entryType, subRegistry);
 		}
 		
