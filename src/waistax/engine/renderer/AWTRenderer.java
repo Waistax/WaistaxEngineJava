@@ -66,7 +66,7 @@ public class AWTRenderer implements Renderer
 	/** Initialize with standard window title and dimension  */
 	public AWTRenderer()
 	{
-		this("Waistax Engine " + Engine.version, new Vec2i(16 * 50, 9 * 50));
+		this("Waistax Engine " + Engine.VERSION, new Vec2i(16 * 50, 9 * 50));
 	}
 	
 	@Override
