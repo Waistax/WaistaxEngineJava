@@ -69,7 +69,7 @@ public class Input
 	/** Update all of the input information for this frame
 	 * Real input is stored in buffers.
 	 * These are the variables that end with Input.
-	 * And input used by the game is updated in this method.
+	 * And input used by the application is updated in this method.
 	 * This helps to know the total input on every frame.
 	 * Because of this algorithm input is always one frame behind. */
 	public void frame()

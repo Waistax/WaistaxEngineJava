@@ -1,20 +1,20 @@
 package waistax.engine;
 
 /**
- * Implements a game to the engine
+ * Implements an application to the engine
  *
  * Author: Waistax
  * Created: 0.1 / 13 Aðu 2020 / 15:28:54
  *
  */
-public interface Game
+public interface App
 {
-	/** Load the game */
+	/** Load the application */
 	public void load();
 	
-	/** Save the game */
+	/** Save the application */
 	public void save();
 	
-	/** Update and draw the game */
+	/** Update and draw the application */
 	public void frame();
 }

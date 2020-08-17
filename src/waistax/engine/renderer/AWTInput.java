@@ -13,6 +13,7 @@ import java.awt.event.*;
  */
 public class AWTInput extends Input implements KeyListener, MouseListener, MouseWheelListener, MouseMotionListener
 {
+	/** Default */
 	public AWTInput()
 	{
 		super(256, 8);

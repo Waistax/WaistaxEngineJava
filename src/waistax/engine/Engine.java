@@ -16,8 +16,8 @@ public class Engine
 	/** The version of the engine */
 	public static final String version = "0.3";
 	
-	/** Profiles frame method of the game */
-	public static final Profiler GAME_PROFILER = new Profiler();
+	/** Profiles frame method of the application */
+	public static final Profiler APP_PROFILER = new Profiler();
 	
 	/** Profiles frame method of the input */
 	public static final Profiler INPUT_PROFILER = new Profiler();
@@ -29,9 +29,9 @@ public class Engine
 	 * This should not change after the engine starts. */
 	public static Renderer renderer;
 	
-	/** The active game
+	/** The active application
 	 * This should not change after the engine starts. */
-	public static Game game;
+	public static App app;
 	
 	/** The aimed frame rate of the engine
 	 * Engine will go as fast as it can if this is 0. */
@@ -80,7 +80,7 @@ public class Engine
 		{
 			// Load
 			renderer.create();
-			game.load();
+			app.load();
 			
 			// Start the loop
 			
@@ -120,14 +120,14 @@ public class Engine
 				{
 					// Calculate the frame rate and profiler average times
 					frameRate = frames / secondsTimer;
-					GAME_PROFILER.calculate();
+					APP_PROFILER.calculate();
 					INPUT_PROFILER.calculate();
 					RENDER_PROFILER.calculate();
 					
 					// TODO: Get rid of this
 					// Print the frame rate and average times
 					System.out.println("Frame Rate: " + frameRate);
-					System.out.println("Game: " + GAME_PROFILER.getAverage() + "ms");
+					System.out.println("App: " + APP_PROFILER.getAverage() + "ms");
 					System.out.println("Input: " + INPUT_PROFILER.getAverage() + "ms");
 					System.out.println("Render: " + RENDER_PROFILER.getAverage() + "ms");
 					
@@ -153,7 +153,7 @@ public class Engine
 			renderer.destroy();
 			
 			// Save
-			game.save();
+			app.save();
 			System.exit(0);
 		}
 	}
@@ -165,9 +165,9 @@ public class Engine
 		renderer.getInput().frame();
 		INPUT_PROFILER.stop();
 		
-		GAME_PROFILER.start();
-		game.frame();
-		GAME_PROFILER.stop();
+		APP_PROFILER.start();
+		app.frame();
+		APP_PROFILER.stop();
 		
 		RENDER_PROFILER.start();
 		renderer.render();

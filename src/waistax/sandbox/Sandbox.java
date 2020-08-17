@@ -13,14 +13,14 @@ import java.awt.event.*;
  * Created: 0.1 / 13 Aðu 2020 / 17:04:15
  *
  */
-public class Sandbox implements Game
+public class Sandbox implements App
 {
 	/** Start of the test */
 	public static void main(String[] args)
 	{
 		// Set the renderer and the game
 		Engine.renderer = new AWTRenderer();
-		Engine.game = new Sandbox();
+		Engine.app = new Sandbox();
 		// Then start the engine
 		Engine.start();
 	}

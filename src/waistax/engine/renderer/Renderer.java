@@ -12,15 +12,15 @@ import waistax.engine.*;
 public interface Renderer
 {
 	/** Create the window and input
-	 * This is called before the game loads. */
+	 * This is called before the application loads. */
 	public void create();
 	
 	/** Destroy the window and input
-	 * This is called after the game saves. */
+	 * This is called after the application saves. */
 	public void destroy();
 	
 	/** Render the drawn content
-	 * This is called after every game frame. */
+	 * This is called after every application frame. */
 	public void render();
 	
 	/** Returns the created input
