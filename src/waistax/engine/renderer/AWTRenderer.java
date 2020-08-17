@@ -169,6 +169,32 @@ public class AWTRenderer implements Renderer
 		return input;
 	}
 	
+	/** Set the anti-aliasing rendering hints */
+	public void setAntializing(boolean antiAliasing)
+	{
+		this.antiAliasing = antiAliasing;
+		
+		// If the window is already created
+		if (frame != null)
+		{
+			// Set anti-aliasing
+			graphics.setRenderingHint(KEY_ANTIALIASING, antiAliasing ? VALUE_ANTIALIAS_ON : VALUE_ANTIALIAS_OFF);
+			graphics.setRenderingHint(KEY_TEXT_ANTIALIASING, antiAliasing ? VALUE_TEXT_ANTIALIAS_ON : VALUE_TEXT_ANTIALIAS_OFF);
+		}
+	}
+	
+	/** Set the background color of the graphics */
+	public void setClearColor(Color clearColor)
+	{
+		this.clearColor = clearColor;
+		
+		// If the window is already created
+		if (frame != null)
+			
+			// Set the clear color
+			graphics.setBackground(clearColor);
+	}
+	
 	/** Set the icon of the window */
 	public void setIcon(Image icon)
 	{

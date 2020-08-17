@@ -14,7 +14,7 @@ import waistax.engine.renderer.*;
 public class Engine
 {
 	/** The version of the engine */
-	public static final String VERSION = "0.4";
+	public static final String VERSION = "0.5";
 	
 	/** Profiles frame method of the application */
 	public static final Profiler APP_PROFILER = new Profiler();
