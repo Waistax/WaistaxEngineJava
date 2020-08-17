@@ -21,10 +21,10 @@ import javax.swing.*;
 public class AWTRenderer implements Renderer
 {
 	/** The title of the window */
-	public String title;
+	public String title = "Waistax Engine " + Engine.VERSION;
 	
 	/** The dimensions of the window */
-	public Vec2i dimension;
+	public Vec2i dimension = new Vec2i(16 * 50, 9 * 50);
 	
 	/** The number of buffers the canvas has */
 	public int numBuffers = 3;
@@ -34,6 +34,9 @@ public class AWTRenderer implements Renderer
 	
 	/** The initial color of the background */
 	public Color clearColor = new Color(0.2F, 0.2F, 0.2F, 1.0F);
+	
+	/** The input listener */
+	public AWTInput input = new AWTInput();
 	
 	/** The icon of the window */
 	public Image icon;
@@ -52,22 +55,6 @@ public class AWTRenderer implements Renderer
 	
 	/** The drawing tool */
 	public Graphics2D graphics;
-	
-	/** The input listener */
-	public AWTInput input;
-	
-	/** Initialize with a given window title and dimension */
-	public AWTRenderer(String title, Vec2i dimension)
-	{
-		this.title = title;
-		this.dimension = dimension;
-	}
-	
-	/** Initialize with standard window title and dimension  */
-	public AWTRenderer()
-	{
-		this("Waistax Engine " + Engine.VERSION, new Vec2i(16 * 50, 9 * 50));
-	}
 	
 	@Override
 	public void create()
@@ -117,8 +104,6 @@ public class AWTRenderer implements Renderer
 				Engine.stop();
 			}
 		});
-		
-		input = new AWTInput();
 		
 		// Add the input as a lister to the canvas
 		canvas.addKeyListener(input);
@@ -193,6 +178,22 @@ public class AWTRenderer implements Renderer
 			
 			// Set the clear color
 			graphics.setBackground(clearColor);
+	}
+	
+	/** Set the input listener */
+	public void setInput(AWTInput input)
+	{
+		this.input = input;
+		
+		// If the window is already created
+		if (frame != null)
+		{
+			// Add the input as a lister to the canvas
+			canvas.addKeyListener(input);
+			canvas.addMouseListener(input);
+			canvas.addMouseWheelListener(input);
+			canvas.addMouseMotionListener(input);
+		}
 	}
 	
 	/** Set the icon of the window */
