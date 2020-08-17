@@ -122,6 +122,48 @@ public class Registry
 		subRegistry.add(identifier, t);
 		return true;
 	}
+
+	/** Add an entry
+	 * Returns false if the given namespace is not from this registry.
+	 * Returns false if the given name already exists inside the namespace.
+	 * This method takes the class too, so t can be an object of T's child. */
+	public <T> boolean add(String id, T t, Class<T> entryType)
+	{
+		// Get the index of the separator in the id
+		int separatorIndex = id.indexOf(':');
+		
+		// Make sure the separator is there and it is at the middle
+		if (separatorIndex < 1 || separatorIndex >= id.length() - 1)
+			
+			return false;
+		
+		// Get the namespace
+		String namespaceName = id.substring(0, separatorIndex);
+		Namespace namespace = getNamespace(namespaceName);
+		
+		// If the namespace does not exists
+		if (namespace == null)
+			
+			// Create a new one
+			namespace = createNamespace(namespaceName);
+		
+		// Create the identifier
+		String name = id.substring(separatorIndex + 1);
+		Identifier identifier = namespace.createIdentifier(name);
+		
+		// If the name already exists
+		if (identifier == null)
+			
+			// Return false
+			return false;
+		
+		// Get the sub registry for the type
+		SubRegistry<T> subRegistry = getSubRegistry(entryType);
+		
+		// Add the entry and return true
+		subRegistry.add(identifier, t);
+		return true;
+	}
 	
 	/** Get an entry
 	 * Returns null if the id is not valid.
